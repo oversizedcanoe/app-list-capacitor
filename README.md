@@ -58,3 +58,4 @@ getInstalledApps() => Promise<AppInfo>
 | **`name`** | <code>string</code> |
 
 </docgen-api>
+
