@@ -40,10 +40,10 @@ echo(options: { value: string; }) => Promise<{ value: string; }>
 ### getInstalledApps()
 
 ```typescript
-getInstalledApps() => Promise<AppInfo>
+getInstalledApps() => Promise<{ installedApps: AppInfo[]; }>
 ```
 
-**Returns:** <code>Promise&lt;<a href="#appinfo">AppInfo</a>&gt;</code>
+**Returns:** <code>Promise&lt;{ installedApps: AppInfo[]; }&gt;</code>
 
 --------------------
 
@@ -56,6 +56,10 @@ getInstalledApps() => Promise<AppInfo>
 | Prop       | Type                |
 | ---------- | ------------------- |
 | **`name`** | <code>string</code> |
+
+| Method      | Signature                               |
+| ----------- | --------------------------------------- |
+| **AppInfo** | () =&gt; <a href="#appinfo">AppInfo</a> |
 
 </docgen-api>
 

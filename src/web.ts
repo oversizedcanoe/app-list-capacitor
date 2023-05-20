@@ -8,7 +8,7 @@ export class AppListWeb extends WebPlugin implements AppListPlugin {
     return options;
   }
 
-  async getInstalledApps(): Promise<AppInfo> {
-      throw this.unimplemented('Not implemented on web')
+  async getInstalledApps(): Promise<{installedApps: AppInfo[]}> {
+    throw this.unimplemented('Not implemented on web')
   }
 }
