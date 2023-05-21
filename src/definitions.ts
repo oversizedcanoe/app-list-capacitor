@@ -5,6 +5,10 @@ export interface AppListPlugin {
 
 export interface AppInfo {
   name: string;
+  description: string;
+  isSystemApp: boolean;
+  isUpdatedSystemApp: boolean;
+  base64Icon: string;
 
   AppInfo() : AppInfo;
 }

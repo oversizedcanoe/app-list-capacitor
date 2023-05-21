@@ -53,9 +53,13 @@ getInstalledApps() => Promise<{ installedApps: AppInfo[]; }>
 
 #### AppInfo
 
-| Prop       | Type                |
-| ---------- | ------------------- |
-| **`name`** | <code>string</code> |
+| Prop                     | Type                 |
+| ------------------------ | -------------------- |
+| **`name`**               | <code>string</code>  |
+| **`description`**        | <code>string</code>  |
+| **`isSystemApp`**        | <code>boolean</code> |
+| **`isUpdatedSystemApp`** | <code>boolean</code> |
+| **`base64Icon`**         | <code>string</code>  |
 
 | Method      | Signature                               |
 | ----------- | --------------------------------------- |

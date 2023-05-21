@@ -39,19 +39,15 @@ public class AppListPlugin extends Plugin {
 
     @PluginMethod
     public void getInstalledApps(PluginCall call) throws JSONException {
-        
-        JSObject ret = new JSObject();
-
+        JSObject pluginReturnObject = new JSObject();
         JSONArray installedAppsArray = new JSONArray();
 
         for (AppInfo appInfo : implementation.getInstalledApps()) {
-            
             JSONObject appInfoObject = appInfo.ToJSONObject();
-
             installedAppsArray.put(appInfoObject);
         }
 
-        ret.put("installedApps", installedAppsArray);
-        call.resolve(ret);
+        pluginReturnObject.put("installedApps", installedAppsArray);
+        call.resolve(pluginReturnObject);
     }
 }
