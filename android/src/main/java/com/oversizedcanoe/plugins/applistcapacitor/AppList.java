@@ -22,7 +22,9 @@ public class AppList {
         return value;
     }
 
-    public List<AppInfo> getInstalledApps() {
+    public List<AppInfo> getInstalledApps(AppListQueryParams queryParams) {
+        Utilities.validateQuery(queryParams);
+        
         List<AppInfo> list = new ArrayList<AppInfo>();
         final Context context = this.activity.getApplicationContext();
         final PackageManager packageManager = context.getPackageManager();
@@ -30,11 +32,17 @@ public class AppList {
         int size = 0;
 
         for (ApplicationInfo app : applicationInfos) {
+            Boolean isSystemApp = (app.flags & ApplicationInfo.FLAG_SYSTEM)  != 0;
+            Boolean isUpdatedSystemApp = (app.flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP)  != 0;
+            Boolean shouldIncludeApp = isSystemApp == false || (isSystemApp && queryParams.includeSystemApps) || (isUpdatedSystemApp && queryParams.includeUpdatedSystemApps) ;
+
+            if (shouldIncludeApp == false) {
+                continue;
+            }
+
             String appName = app.loadLabel(packageManager).toString();
             CharSequence sequence = app.loadDescription(packageManager);
             String description = sequence == null ? "" : sequence.toString();
-            Boolean isSystemApp = (app.flags & ApplicationInfo.FLAG_SYSTEM)  != 0;
-            Boolean isUpdatedSystemApp = (app.flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP)  != 0;
             String base64Icon =  Utilities.drawableToBase64String(app.loadIcon(packageManager));
 
             AppInfo appInfo = new AppInfo(appName, description, isSystemApp, isUpdatedSystemApp, base64Icon);

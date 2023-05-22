@@ -2,7 +2,7 @@ import { WebPlugin } from '@capacitor/core';
 import { LoremIpsum } from "lorem-ipsum";
 import { blackBase64, blueBase64, greenBase64, orangeBase64, pinkBase64, purpleBase64, redBase64, whiteBase64, yellowBase64 } from './really-long-strings'
 
-import type { AppInfo, AppListPlugin } from './definitions';
+import type { AppInfo, AppListPlugin, AppListQueryParams } from './definitions';
 
 export class AppListWeb extends WebPlugin implements AppListPlugin {
   async echo(options: { value: string }): Promise<{ value: string }> {
@@ -10,8 +10,9 @@ export class AppListWeb extends WebPlugin implements AppListPlugin {
     return options;
   }
 
-  async getInstalledApps(): Promise<{installedApps: AppInfo[]}> {
+  async getInstalledApps(queryParams: AppListQueryParams): Promise<{installedApps: AppInfo[]}> {
     // In order to test functionality quickly (i.e. in Chrome instead of Android), return a few hard coded examples for web. Eventually, this should throw this.unimplemented
+    //throw this.unimplemented('Not implemented on web')
 
     let apps: AppInfo[] = [];
 
@@ -35,12 +36,15 @@ export class AppListWeb extends WebPlugin implements AppListPlugin {
 
     for (let index = 0; index < 50; index++) {
       let app: AppInfo = new AppInfoWeb();
-      app.name = nameLorem.generateSentences(1);
+      app.name = nameLorem.generateSentences(1).replace('.', '');
       app.description = descriptionLorem.generateSentences(1);
 
-      let rand = Math.random();
-      let randomIndex = Math.floor(rand*base64Array.length);
-      app.base64Icon = base64Array[randomIndex];
+      if (queryParams.includeIcons){
+        let rand = Math.random();
+        let randomIndex = Math.floor(rand*base64Array.length);
+        app.base64Icon = base64Array[randomIndex];
+      }
+
       apps.push(app);
     }
 
@@ -49,7 +53,6 @@ export class AppListWeb extends WebPlugin implements AppListPlugin {
     });
 
     return result;
-    //throw this.unimplemented('Not implemented on web')
   }
 }
 

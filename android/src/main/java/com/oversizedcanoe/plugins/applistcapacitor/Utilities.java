@@ -7,9 +7,16 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 
 import java.io.ByteArrayOutputStream;
+import java.security.InvalidParameterException;
 import java.util.Base64;
 
 public class Utilities {
+
+    public static void validateQuery(AppListQueryParams queryParams) throws InvalidParameterException {
+        if (queryParams == null) {
+            throw new InvalidParameterException("Parameter 'queryParams' is required.");
+        }
+    }
 
     public static String drawableToBase64String(Drawable drawable) {
         Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);

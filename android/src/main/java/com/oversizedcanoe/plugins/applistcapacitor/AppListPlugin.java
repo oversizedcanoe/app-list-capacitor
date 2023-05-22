@@ -39,10 +39,16 @@ public class AppListPlugin extends Plugin {
 
     @PluginMethod
     public void getInstalledApps(PluginCall call) throws JSONException {
+        if(call.getData() == null) {
+            call.reject("An AppListQueryParams parameter is required.");
+        }
+
         JSObject pluginReturnObject = new JSObject();
         JSONArray installedAppsArray = new JSONArray();
 
-        for (AppInfo appInfo : implementation.getInstalledApps()) {
+        AppListQueryParams queryParams = mapCallOptions(call);
+
+        for (AppInfo appInfo : implementation.getInstalledApps(queryParams)) {
             JSONObject appInfoObject = appInfo.ToJSONObject();
             installedAppsArray.put(appInfoObject);
         }
@@ -50,4 +56,13 @@ public class AppListPlugin extends Plugin {
         pluginReturnObject.put("installedApps", installedAppsArray);
         call.resolve(pluginReturnObject);
     }
+
+    private AppListQueryParams mapCallOptions(PluginCall call) throws JSONException {
+        AppListQueryParams queryParams = new AppListQueryParams();
+        queryParams.includeSystemApps = call.getBoolean("includeSystemApps");
+        queryParams.includeUpdatedSystemApps = call.getBoolean("includeUpdatedSystemApps");
+        queryParams.includeIcons = call.getBoolean("includeIcons");
+        return queryParams;
+    }
+
 }

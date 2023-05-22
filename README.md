@@ -14,7 +14,7 @@ npx cap sync
 <docgen-index>
 
 * [`echo(...)`](#echo)
-* [`getInstalledApps()`](#getinstalledapps)
+* [`getInstalledApps(...)`](#getinstalledapps)
 * [Interfaces](#interfaces)
 
 </docgen-index>
@@ -37,11 +37,15 @@ echo(options: { value: string; }) => Promise<{ value: string; }>
 --------------------
 
 
-### getInstalledApps()
+### getInstalledApps(...)
 
 ```typescript
-getInstalledApps() => Promise<{ installedApps: AppInfo[]; }>
+getInstalledApps(queryParams: AppListQueryParams) => Promise<{ installedApps: AppInfo[]; }>
 ```
+
+| Param             | Type                            |
+| ----------------- | ------------------------------- |
+| **`queryParams`** | <code>AppListQueryParams</code> |
 
 **Returns:** <code>Promise&lt;{ installedApps: AppInfo[]; }&gt;</code>
 
