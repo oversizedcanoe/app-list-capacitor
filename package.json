@@ -76,6 +76,7 @@
     }
   },
   "dependencies": {
-    "@capacitor/cli": "^5.0.3"
+    "@capacitor/cli": "^5.0.3",
+    "lorem-ipsum": "^2.0.8"
   }
 }

@@ -9,6 +9,4 @@ export interface AppInfo {
   isSystemApp: boolean;
   isUpdatedSystemApp: boolean;
   base64Icon: string;
-
-  AppInfo() : AppInfo;
 }
