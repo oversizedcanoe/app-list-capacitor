@@ -17,11 +17,11 @@ public class Utilities {
         drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
         drawable.draw(canvas);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG,100, stream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
 
-        String result = "";
+        String result = "data:image/png;base64,";
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            result = Base64.getEncoder().encodeToString(stream.toByteArray());
+            result += Base64.getEncoder().encodeToString(stream.toByteArray());
         }
 
         return result;
