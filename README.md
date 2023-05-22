@@ -61,9 +61,5 @@ getInstalledApps() => Promise<{ installedApps: AppInfo[]; }>
 | **`isUpdatedSystemApp`** | <code>boolean</code> |
 | **`base64Icon`**         | <code>string</code>  |
 
-| Method      | Signature                               |
-| ----------- | --------------------------------------- |
-| **AppInfo** | () =&gt; <a href="#appinfo">AppInfo</a> |
-
 </docgen-api>
 
