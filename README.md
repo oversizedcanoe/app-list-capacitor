@@ -1,6 +1,25 @@
 # app-list-capacitor
 
-A capacitor plugin to retrieve a list of apps installed on a device.
+A Capacitor plugin to retrieve a list of apps installed on a device. *Android only, at this time*.
+
+Most of the below text is auto-generated, you can get this via npm straight from github as it's not hosted on npm.
+``` bash
+npm i https://github.com/oversizedcanoe/app-list-capacitor
+npx cap sync
+```
+
+Follow the instructions as you would for any other Capacitor plugin.
+
+To Do List:
+- Return whatever is necessary to track when apps start/stop
+- I'm not 100% clear on permissions in Android, I may need to check them each time despite existing in the Manifest
+- Remove the boilerplate `echo` code
+- Add more properties to the AppInfo class
+- Implement IOS version
+- Figure out a way to only return dummy web data if a certain method is called or certain parameter used?
+  - It's convenient for testing but I'd prefer if it threw an exception unless you specifically requested dummy data.
+
+# Auto Generated Text Below 👇
 
 ## Install
 
